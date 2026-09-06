@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -29,7 +30,8 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob:",
               "font-src 'self' data:",
-              "connect-src 'self'",
+              // Sentry browser SDK reports to the ingest endpoint (REQ-20.2).
+              "connect-src 'self' https://*.ingest.sentry.io",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
@@ -57,4 +59,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig);

@@ -8,3 +8,6 @@ allowBuilds:
   '@prisma/engines': true
   '@prisma/client': true
   puppeteer: true
+  # sentry-cli binary only needed for source-map upload, which is deferred
+  # until SENTRY_AUTH_TOKEN + org/project slugs are provisioned (design).
+  '@sentry/cli': false
