@@ -640,6 +640,60 @@ describe("landing page (LND-1..5, ADF-1/ADF-8)", () => {
   });
 });
 
+// LND-20.1 (sprint 20): honest launch/announcement section between the FAQ
+// and the final CTA - product live + single FREE plan (10 audits / 30 days),
+// neutral ES body from the shared copy, design tokens consistent with the
+// LND-16/LND-17 pattern (serif navy heading, mono eyebrow, gray base with a
+// white rounded-2xl recuadro).
+describe("landing page launch section (LND-20.1)", () => {
+  it("renders the launch section between FAQ and final CTA (LND-20.1)", async () => {
+    await renderPage();
+    const heading = screen.getByRole("heading", {
+      level: 2,
+      name: LANDING_COPY.launch.heading,
+    });
+    expect(heading).toBeInTheDocument();
+    // Document order: FAQ → launch → CTA.
+    const faq = screen.getByText(
+      "Respuestas rápidas sobre GEO y visibilidad en IA",
+    );
+    const cta = screen.getByRole("heading", {
+      level: 2,
+      name: LANDING_COPY.sections.ctaTitle,
+    });
+    expect(
+      faq.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).not.toBe(0);
+    expect(
+      heading.compareDocumentPosition(cta) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).not.toBe(0);
+    // The honest live + FREE plan body renders from the shared copy.
+    expect(screen.getByText(LANDING_COPY.launch.body)).toBeInTheDocument();
+  });
+
+  // LND-20.1 design-system coherence: Instrument Serif heading in navy
+  // #0f172a and the mono eyebrow, matching the LND-16/LND-17 section pattern.
+  it("uses the landing design tokens on the launch section (LND-20.1)", async () => {
+    await renderPage();
+    const heading = screen.getByRole("heading", {
+      level: 2,
+      name: LANDING_COPY.launch.heading,
+    });
+    expect(heading.className).toContain("font-serif");
+    expect(heading.className).toContain("text-[#0f172a]");
+    const section = heading.closest("section");
+    expect(section).not.toBeNull();
+    expect(
+      within(section as HTMLElement).getByText(LANDING_COPY.launch.eyebrow),
+    ).toBeInTheDocument();
+    // The section follows the gray-base + white rounded-2xl recuadro pattern.
+    const recuadro = section?.querySelector("div.rounded-2xl");
+    expect(recuadro).not.toBeNull();
+    expect(recuadro?.className).toContain("bg-white");
+    expect(recuadro?.className).not.toContain("rounded-xl");
+  });
+});
+
 // LND-18 (sprint 17): the S5→S7 gray run is broken by an interleaved
 // gray/white rhythm (D5): S4 gray + white rounded-2xl recuadro, S5 white
 // border-y band, S5b gray + white rounded-2xl recuadro, S5c border-t absorbed

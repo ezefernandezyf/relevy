@@ -443,3 +443,32 @@ describe("LANDING_COPY changelog (LND-17, sprint 16)", () => {
     expect(block).not.toMatch(VOSEO_PATTERN);
   });
 });
+
+describe("LANDING_COPY launch section (LND-20.1, sprint 20)", () => {
+  it("keeps the launch body in the 50-200 word band, neutral Spanish (LND-20.1)", () => {
+    // The launch body is a citable passage like the other landing sections -
+    // ES neutral (no voseo/tuteo) and inside the extraction band.
+    const words = LANDING_COPY.launch.body.trim().split(/\s+/).length;
+    expect(words).toBeGreaterThanOrEqual(50);
+    expect(words).toBeLessThanOrEqual(200);
+    expect(LANDING_COPY.launch.body).not.toMatch(VOSEO_PATTERN);
+  });
+
+  it("states the product is live with the FREE plan limit (LND-20.1)", () => {
+    // Honest announcement: the product works today and the plan is FREE -
+    // 10 audits per 30-day window, no payments.
+    expect(LANDING_COPY.launch.body).toMatch(/10 auditorías/);
+    expect(LANDING_COPY.launch.body).toMatch(/30 días/);
+    expect(LANDING_COPY.launch.body).toMatch(/gratuit/i);
+  });
+
+  it("contains no invented claims (LND-20.1)", () => {
+    // No paid tiers, no unshipped features, no external announcement content.
+    expect(LANDING_COPY.launch.body).not.toMatch(
+      /planes? de pago|versión (?:premium|pro)|upgrade|mejore su plan|facturación|renueva|suscrib|tarjeta|precio/i,
+    );
+    expect(LANDING_COPY.launch.body).not.toMatch(
+      /publicado en (?:TechCrunch|Product Hunt|Hacker News)|premio|galardón|nominad/i,
+    );
+  });
+});
