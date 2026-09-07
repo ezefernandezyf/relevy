@@ -1,4 +1,4 @@
-# CI — GeoAudit (github-ci R1-R5)
+# CI — Relevy (github-ci R1-R5)
 # Triggers on PRs targeting `develop` or `main` (R4). Four parallel jobs
 # (R5 fast failure): lint, typecheck, test, e2e. Any failing job blocks merge.
 #

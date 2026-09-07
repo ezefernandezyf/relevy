@@ -9,7 +9,7 @@
 - **Database**: PostgreSQL (Supabase) + Prisma ORM
 - **Auth**: NextAuth.js v5 (Auth.js) — GitHub OAuth (único proveedor)
 - **Monetization**: None — single Free plan (10 audits / 30 days, no payments)
-- **Email**: Resend (V1) — **PDF**: Puppeteer + HTML template con print CSS
+- **Monitoring**: Sentry (error tracking, DSN-guarded — no-op sin `SENTRY_DSN`)
 - **Validation**: Zod 4 (contracts compartidos en `src/lib/contracts/`)
 - **Testing**: Vitest + React Testing Library + Playwright E2E
 - **Package Manager**: pnpm (build scripts aprobados con `pnpm approve-builds`)

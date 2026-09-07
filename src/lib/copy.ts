@@ -332,6 +332,15 @@ export const LANDING_COPY = {
     "v3.0.0 — Incorporación de la sexta dimensión de autoridad de marca, con verificación de Wikipedia y Wikidata en cada auditoría.",
     "v2.0.0 — Primer modelo de puntuación calibrado, con ponderaciones iniciales por dimensión y bandas de severidad definidas.",
   ],
+  // LND-20.1 (sprint 20): honest launch/announcement section between the FAQ
+  // and the final CTA. Product live + single FREE plan (10 audits / 30 days),
+  // no invented claims (no paid tiers, no unshipped features, no external
+  // posts). Neutral ES body (VOSEO_PATTERN-clean) in the 50-200 word band.
+  launch: {
+    eyebrow: "Lanzamiento",
+    heading: "El plan gratuito de Relevy ya está disponible",
+    body: "Relevy ya está disponible y audita URLs reales: cada auditoría analiza su sitio en 6 motores de búsqueda con IA y entrega un GEO Score de 0 a 100 en menos de 30 segundos. El plan es único y gratuito: cada cuenta puede realizar hasta 10 auditorías por ventana de 30 días. El límite se reinicia 30 días después de cada auditoría y el historial queda guardado para comparar la evolución del puntaje. No hay funciones reservadas: todo lo publicado en esta página ya está en producción. Si su sitio bloquea los crawlers de IA, el reporte lo indica con claridad. Cree su cuenta con GitHub y ejecute su primera auditoría hoy.",
+  },
 } as const;
 
 /**
