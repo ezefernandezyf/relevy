@@ -19,14 +19,16 @@
 > **✅ Schema Up completado (Sprint 19, archivado 2026-09-05):** schema score de la landing 62 → **93** con datos 100% reales (LND-7): `ORG_SAME_AS` 3→5 (+TikTok `@ezefernandezdev`, +repo `relevy` → sameAs 15/15), bloque JSON-LD `Article` con datos reales del Case Study (headline, fechas 2026-08-20/28, author FOUNDER, publisher Relevy → `article_author` 10/10 + `business_type_schema` publisher 10/10), `speakable` `["#case-study"]` + `id="case-study"` en el HTML servido (→ 5/5), `award` NO inventado (honestidad, `missing_recommended` 13/15), y `BreadcrumbList` en las 3 rutas del dashboard (Home>Dashboard>…, → `breadcrumbs` 5/5). Verificado PASS WITH WARNINGS (5/5 requisitos, 16/16 escenarios, 1058 tests). Fixture pin: `ld-landing-93.html` → score 93 + `businessType` publisher. Branch `feat/sprint-19-schema-up` mergeada a develop = `296c719` = PR #84.
 >
 > **✅ Close Free completado (Sprint 20, archivado 2026-09-07):** cierre del plan FREE — Sentry MVP (`@sentry/nextjs` 10.73.0 pin exacto, 3 configs + instrumentation, guard no-op sin DSN, CSP `connect-src` += `*.ingest.sentry.io`), marca final (og.png regenerado con mark Relevy 1200×630 hash `aca844d2…`, 5 SVGs starter removidos), sección launch honesta en landing (FREE 10/30d, copy ES neutro 50-200w), limpiezas W-1..W-3 (lighthouse + `puppeteer-core` podados del lockfile, `public/fonts/` removido) y docs vivos sincronizados (grep de marca antigua = 0, README/AGENTS/config/workspace/ci/roadmap, brief `docs/RELEVY-BRAND-BRIEF.md` commiteado). Verificado PASS (9/9 requisitos, 28/28 escenarios, 1106 tests). develop = `b0b7cf2` = PRs #85/#86/#87 (cadena feature-branch-chain). Pendientes post-archive: SENTRY_DSN en Vercel env, merge milestone develop→main, anuncio externo (posts del usuario).
+>
+> **✅ Citability i18n completado (Sprint 21, archivado 2026-09-07):** patrones de answer block bilingües EN+ES en 6 constantes del engine de citabilidad (`DEFINITION_PATTERN`, `ANSWER_COPULA`, `FIRST_PERSON_LEAD`, `UNIQUENESS_PHRASES` +8 frases ES normativas — "entrevistamos" omitido por diseño, `PRONOUN_LEAD`, `CONJUNCTION_LEAD`) — `scorer.ts` con 0 cambios, sin tocar pesos ni contenido. El landing ES de relevy.app pasa de citabilidad 49.9 → **73.9** (fetch real, `answer` 20 → 100 en bloques de definición). Verificado PASS (5/5 requisitos, 10/10 escenarios, 1119 tests, lint/typecheck clean). Branch `feat/sprint-21-citability-i18n` (10 commits sobre develop `6e0f32a`) — **NO mergeada aún**; siguiente: PR a develop. Follow-up post-deploy: re-pin `pnpm verify:scorehero` / `src/app/score-hero-evidence.ts` (score ES subió → evidencia stale).
 
 ## Estado actual
 
 | Campo | Valor |
 |---|---|
 | Rama | `develop` (integración) / `main` (release) |
-| Main / Develop | `296c719` / `b0b7cf2` |
-| Tests | **1106 passed / 4 skipped** |
+| Main / Develop | `296c719` / `6e0f32a` |
+| Tests | **1119 passed / 4 skipped** |
 | Deploy | Vercel Free · `relevy.app` (dominio nuevo, env configurado; pendiente `SENTRY_DSN`) |
 | Nombre de marca | **Relevy** |
 | Preflight | interactive · both (openspec+engram) · ask-on-risk · 400 líneas · strict TDD |
@@ -59,17 +61,21 @@
 | 18 | **Remove PDF** (remoción completa del feature de export PDF — src/pdf/, route `/api/report/[id]/pdf`, threading report layer, botón Exportar PDF, copy, deps puppeteer-core/puppeteer/@sparticuz/chromium-min, spec canonical pdf-export; crawler `application/pdf` preservado) | ✅ archivado · main = develop = `eeeaf3f` = PR #83 · 1049 tests · verify PASS WITH WARNINGS 0/0 |
 | 19 | **Schema Up** (schema score landing 62→93 con datos reales: `ORG_SAME_AS` 3→5 → sameAs 15/15, Article JSON-LD con datos del Case Study → `article_author` 10/10 + publisher 10/10, `speakable` `#case-study` → 5/5, `award` honesto `missing_recommended` 13/15, `BreadcrumbList` en 3 rutas del dashboard → `breadcrumbs` 5/5; fixture `ld-landing-93` pin 93) | ✅ archivado · develop = `296c719` = PR #84 · 1058 tests · verify PASS WITH WARNINGS 5/5 · 16/16 |
 | 20 | **Close Free** (Sentry MVP `@sentry/nextjs` 10.73.0 pin exacto + 3 configs + instrumentation + guard no-op sin DSN + CSP `connect-src` ingest; og.png regenerado mark Relevy 1200×630 hash `aca844d2…`; 5 SVGs starter removidos; sección launch honesta landing FREE 10/30d; lighthouse + `puppeteer-core` podados; `public/fonts/` removido; docs vivos sync grep de marca antigua = 0; brief `RELEVY-BRAND-BRIEF.md` commiteado) | ✅ archivado · develop = `b0b7cf2` = PRs #85/#86/#87 (cadena feature-branch-chain) · 1106 tests · verify PASS 9/9 · 28/28 |
+| 21 | **Citability i18n** (patrones answer block EN+ES en 6 constantes del engine de citabilidad; `scorer.ts` 0 cambios; landing ES citabilidad 49.9 → **73.9** real; fixture `page-es-landing.html` +8.0 lift; UNIQUENESS_PHRASES ES = 8 normativas — "entrevistamos" omitido por diseño) | ✅ archivado · branch `feat/sprint-21-citability-i18n` (10 commits sobre develop `6e0f32a`) — **NO mergeada** · 1119 tests · verify PASS 5/5 · 10/10 |
 
-## Próximos sprints (plan revisado 2026-09-03, actualizado 2026-09-05)
+## Próximos sprints (plan revisado 2026-09-03, actualizado 2026-09-07)
 
-> El plan original del brief terminaba en "Sprint 7 — Launch". La realidad superó ese plan (Sprints 7-20 reales, con dogfood como Sprint 12, Brand Authority como Sprint 13, Geo Calibration v3.1 como Sprint 14, Polish Final como Sprint 15, Score Up como Sprint 16, UI Polish como Sprint 17, Remove PDF como Sprint 18, Schema Up como Sprint 19 y Close Free como Sprint 20). La salida oficial ya NO incluye Stripe: la monetización se reintroduce solo al validar tracción (D4). Con Close Free archivado, el plan FREE queda cerrado; lo que sigue es el merge del milestone a main + deploy + anuncio.
+> El plan original del brief terminaba en "Sprint 7 — Launch". La realidad superó ese plan (Sprints 7-21 reales, con dogfood como Sprint 12, Brand Authority como Sprint 13, Geo Calibration v3.1 como Sprint 14, Polish Final como Sprint 15, Score Up como Sprint 16, UI Polish como Sprint 17, Remove PDF como Sprint 18, Schema Up como Sprint 19, Close Free como Sprint 20 y Citability i18n como Sprint 21). La salida oficial ya NO incluye Stripe: la monetización se reintroduce solo al validar tracción (D4). Con Close Free archivado, el plan FREE queda cerrado; con Citability i18n archivado (branch sin mergear), lo que sigue es el PR del Sprint 21 a develop, el re-pin de scorehero post-deploy, el merge del milestone a main y el anuncio.
 
 | Sprint | Contenido | Detalle |
 |---|---|---|
-| **— Milestone** | Merge + deploy del cierre FREE | `develop` → `main` (PR milestone, release `release/sprint-20`), deploy Vercel, setear `SENTRY_DSN` en el env de Vercel, verificación live de Sentry — **siguiente** |
+| **— Sprint 21** | PR a develop | `feat/sprint-21-citability-i18n` → develop (10 commits sobre `6e0f32a`; single PR, riesgo bajo ~150-250 líneas) — **siguiente** |
+| **— Milestone** | Merge + deploy del cierre FREE | `develop` → `main` (PR milestone, release `release/sprint-20`), deploy Vercel, setear `SENTRY_DSN` en el env de Vercel, verificación live de Sentry; post-deploy: re-pin `pnpm verify:scorehero` / `src/app/score-hero-evidence.ts` (score ES 73.9 → evidencia stale) |
 | **— Post-sprint** | Anuncio externo | Posts del usuario (LinkedIn/TikTok) usando la landing con sección launch y og.png de marca |
 
-## Deudas pendientes (para Sprints 17-19 — UI Polish, Remove PDF y Schema Up cerrados; Close Free archivado)
+## Deudas pendientes (para Sprints 17-21 — UI Polish, Remove PDF, Schema Up, Close Free y Citability i18n cerrados)
+
+- **De Sprint 21 (Citability i18n, archivado 2026-09-07) — follow-up post-archive**: re-pin `pnpm verify:scorehero` / `src/app/score-hero-evidence.ts` tras el deploy del PR (el score ES subió 49.9 → 73.9 y los pins quedaron stale — SUGGESTION 1 del verify, fuera de scope del change; tarea 4.4 de tasks.md lo documenta).
 
 - **De Sprint 18 (Remove PDF, archivado 2026-09-05) — follow-ups no bloqueantes (W-1..W-3 del verify) — RESUELTOS por Close Free (Sprint 20)**: (1) `pnpm-lock.yaml` retenía `puppeteer-core@25.8.0` transitiva dev-only de `lighthouse@13.4.1` — RESUELTO: se removió `lighthouse` y la poda del lockfile eliminó `puppeteer-core` (PR 3); (2) `node_modules/.pnpm/@sparticuz+chromium-min@149.0.0` huérfano — RESUELTO: el `pnpm install` de poda lo prunó (PR 3); (3) menciones históricas de Puppeteer en `openspec/config.yaml` + `README.md` — RESUELTO: docs sincronizadas a la realidad (PR 3).
 
@@ -98,4 +104,4 @@
 - ✅ → al archivar cada sprint (openspec archive)
 - 🟡 → al completar implementación (verify PASS, pendiente deploy/archive)
 - 🔄 → work en progreso
-- **Siguiente**: merge milestone `develop` → `main` (release/sprint-20) + deploy + `SENTRY_DSN` en Vercel; luego anuncio externo (posts del usuario)
+- **Siguiente**: PR `feat/sprint-21-citability-i18n` → develop; luego merge milestone `develop` → `main` (release/sprint-20) + deploy + `SENTRY_DSN` en Vercel; post-deploy re-pin scorehero; luego anuncio externo (posts del usuario)
