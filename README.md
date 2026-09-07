@@ -6,17 +6,18 @@ El repositorio vive en [github.com/ezefernandezyf/relevy](https://github.com/eze
 
 ## Qué hace
 
-Relevy analiza un sitio web en cinco dimensiones y entrega un score compuesto ponderado:
+Relevy analiza un sitio web en seis dimensiones y entrega un score compuesto ponderado:
 
-| Dimensión | Peso (v2.0.0) | Qué evalúa |
+| Dimensión | Peso (v3.1.0) | Qué evalúa |
 | --------- | ------------- | ---------- |
-| Citabilidad | 28 % | Probabilidad de que los motores de IA citen pasajes de la página como fuente |
-| E-E-A-T | 24 % | Experiencia, experticia, autoridad y confiabilidad del contenido |
-| Técnico | 20 % | Acceso de crawlers de IA (robots.txt, headers, metaetiquetas) |
-| Schema | 14 % | JSON-LD / Schema.org para corroboración de entidades |
+| Citabilidad | 24 % | Probabilidad de que los motores de IA citen pasajes de la página como fuente |
+| E-E-A-T | 23 % | Experiencia, experticia, autoridad y confiabilidad del contenido |
+| Técnico | 15 % | Acceso de crawlers de IA (robots.txt, headers, metaetiquetas) |
+| Schema | 12 % | JSON-LD / Schema.org para corroboración de entidades |
 | Plataforma | 14 % | Readiness, SSR, OpenGraph y headers por motor generativo |
+| Brand Authority | 12 % | Presencia de la marca en Wikipedia/Wikidata (entidad reconocible) |
 
-Cada auditoría genera un reporte con hallazgos priorizados, desglose por categoría, exportación PDF y links de compartición. El plan Free incluye 10 auditorías cada 30 días, con multi-página, PDF y compartición incluidos.
+Cada auditoría genera un reporte con hallazgos priorizados y desglose por categoría. El plan Free incluye 10 auditorías cada 30 días, con reporte completo y links de compartición.
 
 ## Stack
 
@@ -25,7 +26,7 @@ Cada auditoría genera un reporte con hallazgos priorizados, desglose por catego
 - **Base de datos**: PostgreSQL (Supabase) + Prisma ORM (driver adapters)
 - **Auth**: NextAuth.js v5 (Auth.js) — GitHub OAuth
 - **Plan**: Free único — 10 auditorías / 30 días (sin pagos)
-- **Email**: Resend — **PDF**: Puppeteer + HTML template con print CSS
+- **Monitoreo**: Sentry (error tracking)
 - **Validación**: Zod 4 (contracts compartidos en `src/lib/contracts/`)
 - **Testing**: Vitest + React Testing Library + Playwright E2E + @axe-core/playwright
 - **Deploy**: Vercel + GitHub Actions (lint + typecheck + test) + Sentry
@@ -34,7 +35,7 @@ Cada auditoría genera un reporte con hallazgos priorizados, desglose por catego
 
 - Node.js 20+ y pnpm
 - Una instancia de PostgreSQL (Supabase) para `DATABASE_URL`
-- (Opcional) Apps de OAuth GitHub y Resend para los flujos completos
+- (Opcional) App de OAuth GitHub para el flujo de login
 
 ## Cómo correr
 
