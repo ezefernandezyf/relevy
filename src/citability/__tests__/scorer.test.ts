@@ -259,3 +259,33 @@ describe("English regression lock (REQ-21.5)", () => {
     expect(scoreBlock(block).scores.answer).toBe(100);
   });
 });
+
+describe("Spanish bad leads (REQ-21.4)", () => {
+  it("penalizes a Spanish pronoun lead like an English one", () => {
+    const block = blockWith([
+      "Esto significa que los buscadores de IA priorizan el contenido citable.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("penalizes a Spanish conjunction lead like an English one", () => {
+    const block = blockWith([
+      "Sin embargo, el estudio solo cubre una muestra pequeña de sitios.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("penalizes an 'aunque' concessive lead like an English one", () => {
+    const block = blockWith([
+      "Aunque el estudio es pequeño, los datos provienen de una fuente propia.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("keeps subject credit for a Spanish lead that names its subject", () => {
+    const block = blockWith([
+      "Relevy mide la visibilidad de un sitio en los buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeGreaterThanOrEqual(30);
+  });
+});

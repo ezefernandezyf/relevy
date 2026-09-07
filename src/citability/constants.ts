@@ -45,10 +45,15 @@ export const SELF_SUBJECT_BONUS = 40;
 export const SELF_BAND_BONUS = 30;
 export const WORD_BAND_MIN = 50;
 export const WORD_BAND_MAX = 200;
-/** Pronoun leads that force reliance on prior context (design regex). */
-export const PRONOUN_LEAD = /^(?:it|this|that|these|those)\b/i;
-/** Conjunction leads that also imply prior context. */
-export const CONJUNCTION_LEAD = /^(?:but|however|and|also|so|yet)\b/i;
+/** Pronoun leads that force reliance on prior context (design regex),
+ * extended EN+ES (REQ-21.4: esto/eso/aquello/este/esta/estos/estas). */
+export const PRONOUN_LEAD =
+  /^(?:it|this|that|these|those|esto|eso|aquello|este|esta|estos|estas)\b/i;
+/** Conjunction leads that also imply prior context, extended EN+ES (REQ-21.4:
+ * pero/sin embargo/y además/así que/aunque; "y además" is one branch so bare
+ * "Y…" sentence leads are not penalized - design D3). */
+export const CONJUNCTION_LEAD =
+  /^(?:but|however|and|also|so|yet|pero|sin\s+embargo|y\s+además|así\s+que|aunque)\b/i;
 
 // RCI-5 - Structural Readability
 export const STRUCTURE_HEADING_BONUS = 20;
