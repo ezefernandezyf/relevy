@@ -17,15 +17,17 @@
 > **✅ Remove PDF completado (Sprint 18, archivado 2026-09-05):** remoción completa del feature de export PDF — `src/pdf/`, route `/api/report/[id]/pdf`, threading del report layer, botón "Exportar PDF" del dashboard, copy de beneficio, deps `puppeteer-core`/`puppeteer`/`@sparticuz/chromium-min` y spec canonical `pdf-export`; crawler content-type `application/pdf` preservado. Verificado PASS WITH WARNINGS (0/0 requisitos — remoción, 1049 tests). main = develop = `eeeaf3f` = PR #83.
 >
 > **✅ Schema Up completado (Sprint 19, archivado 2026-09-05):** schema score de la landing 62 → **93** con datos 100% reales (LND-7): `ORG_SAME_AS` 3→5 (+TikTok `@ezefernandezdev`, +repo `relevy` → sameAs 15/15), bloque JSON-LD `Article` con datos reales del Case Study (headline, fechas 2026-08-20/28, author FOUNDER, publisher Relevy → `article_author` 10/10 + `business_type_schema` publisher 10/10), `speakable` `["#case-study"]` + `id="case-study"` en el HTML servido (→ 5/5), `award` NO inventado (honestidad, `missing_recommended` 13/15), y `BreadcrumbList` en las 3 rutas del dashboard (Home>Dashboard>…, → `breadcrumbs` 5/5). Verificado PASS WITH WARNINGS (5/5 requisitos, 16/16 escenarios, 1058 tests). Fixture pin: `ld-landing-93.html` → score 93 + `businessType` publisher. Branch `feat/sprint-19-schema-up` mergeada a develop = `296c719` = PR #84.
+>
+> **✅ Close Free completado (Sprint 20, archivado 2026-09-07):** cierre del plan FREE — Sentry MVP (`@sentry/nextjs` 10.73.0 pin exacto, 3 configs + instrumentation, guard no-op sin DSN, CSP `connect-src` += `*.ingest.sentry.io`), marca final (og.png regenerado con mark Relevy 1200×630 hash `aca844d2…`, 5 SVGs starter removidos), sección launch honesta en landing (FREE 10/30d, copy ES neutro 50-200w), limpiezas W-1..W-3 (lighthouse + `puppeteer-core` podados del lockfile, `public/fonts/` removido) y docs vivos sincronizados (grep de marca antigua = 0, README/AGENTS/config/workspace/ci/roadmap, brief `docs/RELEVY-BRAND-BRIEF.md` commiteado). Verificado PASS (9/9 requisitos, 28/28 escenarios, 1106 tests). develop = `b0b7cf2` = PRs #85/#86/#87 (cadena feature-branch-chain). Pendientes post-archive: SENTRY_DSN en Vercel env, merge milestone develop→main, anuncio externo (posts del usuario).
 
 ## Estado actual
 
 | Campo | Valor |
 |---|---|
 | Rama | `develop` (integración) / `main` (release) |
-| Main / Develop | `296c719` / `296c719` |
-| Tests | **1088 passed / 4 skipped** |
-| Deploy | Vercel Free · `relevy.app` (dominio nuevo, env configurado) |
+| Main / Develop | `296c719` / `b0b7cf2` |
+| Tests | **1106 passed / 4 skipped** |
+| Deploy | Vercel Free · `relevy.app` (dominio nuevo, env configurado; pendiente `SENTRY_DSN`) |
 | Nombre de marca | **Relevy** |
 | Preflight | interactive · both (openspec+engram) · ask-on-risk · 400 líneas · strict TDD |
 | Git | feature branches desde `develop` · chained PRs (feature-branch-chain) · milestone vía `release/sprint-N` |
@@ -56,23 +58,25 @@
 | 17 | **UI Polish** (PDF arch resolver, drawer mobile portaleado a body, fondos landing intercalados gris/blanco, JSON-LD org attrs reales sin award) | ✅ archivado · develop = `ad116c1` = PRs #73/#77/#78 · 1084 tests · verify PASS 4/4 · 24/24 |
 | 18 | **Remove PDF** (remoción completa del feature de export PDF — src/pdf/, route `/api/report/[id]/pdf`, threading report layer, botón Exportar PDF, copy, deps puppeteer-core/puppeteer/@sparticuz/chromium-min, spec canonical pdf-export; crawler `application/pdf` preservado) | ✅ archivado · main = develop = `eeeaf3f` = PR #83 · 1049 tests · verify PASS WITH WARNINGS 0/0 |
 | 19 | **Schema Up** (schema score landing 62→93 con datos reales: `ORG_SAME_AS` 3→5 → sameAs 15/15, Article JSON-LD con datos del Case Study → `article_author` 10/10 + publisher 10/10, `speakable` `#case-study` → 5/5, `award` honesto `missing_recommended` 13/15, `BreadcrumbList` en 3 rutas del dashboard → `breadcrumbs` 5/5; fixture `ld-landing-93` pin 93) | ✅ archivado · develop = `296c719` = PR #84 · 1058 tests · verify PASS WITH WARNINGS 5/5 · 16/16 |
+| 20 | **Close Free** (Sentry MVP `@sentry/nextjs` 10.73.0 pin exacto + 3 configs + instrumentation + guard no-op sin DSN + CSP `connect-src` ingest; og.png regenerado mark Relevy 1200×630 hash `aca844d2…`; 5 SVGs starter removidos; sección launch honesta landing FREE 10/30d; lighthouse + `puppeteer-core` podados; `public/fonts/` removido; docs vivos sync grep de marca antigua = 0; brief `RELEVY-BRAND-BRIEF.md` commiteado) | ✅ archivado · develop = `b0b7cf2` = PRs #85/#86/#87 (cadena feature-branch-chain) · 1106 tests · verify PASS 9/9 · 28/28 |
 
 ## Próximos sprints (plan revisado 2026-09-03, actualizado 2026-09-05)
 
-> El plan original del brief terminaba en "Sprint 7 — Launch". La realidad superó ese plan (Sprints 7-19 reales, con dogfood como Sprint 12, Brand Authority como Sprint 13, Geo Calibration v3.1 como Sprint 14, Polish Final como Sprint 15, Score Up como Sprint 16, UI Polish como Sprint 17, Remove PDF como Sprint 18 y Schema Up como Sprint 19). La salida oficial ya NO incluye Stripe: la monetización se reintroduce solo al validar tracción (D4). Lo que sigue cierra el free (Close Free).
+> El plan original del brief terminaba en "Sprint 7 — Launch". La realidad superó ese plan (Sprints 7-20 reales, con dogfood como Sprint 12, Brand Authority como Sprint 13, Geo Calibration v3.1 como Sprint 14, Polish Final como Sprint 15, Score Up como Sprint 16, UI Polish como Sprint 17, Remove PDF como Sprint 18, Schema Up como Sprint 19 y Close Free como Sprint 20). La salida oficial ya NO incluye Stripe: la monetización se reintroduce solo al validar tracción (D4). Con Close Free archivado, el plan FREE queda cerrado; lo que sigue es el merge del milestone a main + deploy + anuncio.
 
 | Sprint | Contenido | Detalle |
 |---|---|---|
-| **20 — Close Free** | Cierre del free (salida oficial sin Stripe) | Sentry (monitoreo, PR 1) · brand presence final (PR 2) · limpieza W-1..W-3 del Sprint 18 + sync de docs a la realidad (PR 3) — **en curso** |
+| **— Milestone** | Merge + deploy del cierre FREE | `develop` → `main` (PR milestone, release `release/sprint-20`), deploy Vercel, setear `SENTRY_DSN` en el env de Vercel, verificación live de Sentry — **siguiente** |
+| **— Post-sprint** | Anuncio externo | Posts del usuario (LinkedIn/TikTok) usando la landing con sección launch y og.png de marca |
 
-## Deudas pendientes (para Sprints 17-19 — UI Polish, Remove PDF y Schema Up cerrados; Close Free en curso)
+## Deudas pendientes (para Sprints 17-19 — UI Polish, Remove PDF y Schema Up cerrados; Close Free archivado)
 
 - **De Sprint 18 (Remove PDF, archivado 2026-09-05) — follow-ups no bloqueantes (W-1..W-3 del verify) — RESUELTOS por Close Free (Sprint 20)**: (1) `pnpm-lock.yaml` retenía `puppeteer-core@25.8.0` transitiva dev-only de `lighthouse@13.4.1` — RESUELTO: se removió `lighthouse` y la poda del lockfile eliminó `puppeteer-core` (PR 3); (2) `node_modules/.pnpm/@sparticuz+chromium-min@149.0.0` huérfano — RESUELTO: el `pnpm install` de poda lo prunó (PR 3); (3) menciones históricas de Puppeteer en `openspec/config.yaml` + `README.md` — RESUELTO: docs sincronizadas a la realidad (PR 3).
 
 - **De Sprint 14 (resueltas por Sprint 15)**: (1) refrescar los rangos predichos del escenario RGS-1 (moz 58-63, relevy 50-54, "nada <25") → REFRESCADOS al corpus medido (moz 57, relevy 55, promedio 42.4, 14 URLs, Anthropic eTLD+1 — T8 del Sprint 15, docs-only); (2) excluir `coverage/` del lint → RESUELTO (`eslint.config.mjs` ignora `coverage/**`, T7 del Sprint 15).
-- **De Sprint 12 → Sprint 16 (RESUELTO parcialmente)**: Sprint 16 entregó el contenido de landing (byline `.byline` en footer, founder sameAs, Case Study + Changelog, descs de plataforma 50-200w con stats) y el re-audit muestra un composite 67-70 — el objetivo 70+/80+ sigue abierto porque los cuerpos ES-only capan experience en 15/25 (shortfall honesto documentado en el archivo del Sprint 16). Siguiente palanca: brand presence final (Close Free, Sprint 20) y/o contenido EN first-person.
+- **De Sprint 12 → Sprint 16 (RESUELTO parcialmente)**: Sprint 16 entregó el contenido de landing (byline `.byline` en footer, founder sameAs, Case Study + Changelog, descs de plataforma 50-200w con stats) y el re-audit muestra un composite 67-70 — el objetivo 70+/80+ sigue abierto porque los cuerpos ES-only capan experience en 15/25 (shortfall honesto documentado en el archivo del Sprint 16). Close Free (Sprint 20) aportó la sección launch + og.png de marca; la siguiente palanca sería contenido EN first-person (si se decide perseguir el 70+).
 - **De Sprint 13 (resueltas por Sprint 14)**: (1) `brandFromDomain` con dominios compuestos → FIXED (eTLD+1 + `MULTI_PART_TLDS`, T12); (2) `searchWikipedia` por título exacto → FIXED (comparación case-insensitive en `probes.ts`, T12 — limitación MVP de título alternativo documentada); (3) rama degradada de URL inválida escribiendo "2.0.0" → DECISIÓN documentada en design D (resultado degradado no es audit real, se conserva "2.0.0").
-- **Resuelta**: rename manual del repo GitHub `geoaudit` → `relevy` (external pending de Sprint 11) — renombrado en GitHub, el alias redirige; queda pendiente (cosmético) actualizar el remote local a `git@github.com:ezefernandezyf/relevy.git` en Close Free (Sprint 20).
+- **Resuelta**: rename manual del repo GitHub `geoaudit` → `relevy` (external pending de Sprint 11) — renombrado en GitHub, el alias redirige; el remote local sigue apuntando a `git@github.com:ezefernandezyf/geoaudit.git` (cosmético, pendiente post-Sprint 20 — no se tocó en la cadena de PRs).
 
 ## Decisiones estratégicas (para no re-preguntar)
 
@@ -94,4 +98,4 @@
 - ✅ → al archivar cada sprint (openspec archive)
 - 🟡 → al completar implementación (verify PASS, pendiente deploy/archive)
 - 🔄 → work en progreso
-- **En curso**: Close Free (Sprint 20) — Sentry + brand presence + limpieza/docs (PR 1-3)
+- **Siguiente**: merge milestone `develop` → `main` (release/sprint-20) + deploy + `SENTRY_DSN` en Vercel; luego anuncio externo (posts del usuario)

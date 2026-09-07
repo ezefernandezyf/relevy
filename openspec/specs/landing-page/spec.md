@@ -1,10 +1,10 @@
 # Landing Page Specification
 
-> **Change**: `sprint-7-ui-fidelity` + `sprint-8-polish-testing-backlog` + `sprint-9-audit-calibration` + `sprint-10-free-mode` + `sprint-11-rebrand-polish` + `sprint-12-dogfood-geo-score` + `sprint-13-brand-authority` + `sprint-19-schema-up` · **Type**: New capability (ADDED) + Delta (MODIFIED + ADDED)
+> **Change**: `sprint-7-ui-fidelity` + `sprint-8-polish-testing-backlog` + `sprint-9-audit-calibration` + `sprint-10-free-mode` + `sprint-11-rebrand-polish` + `sprint-12-dogfood-geo-score` + `sprint-13-brand-authority` + `sprint-19-schema-up` + `sprint-20-close-free` · **Type**: New capability (ADDED) + Delta (MODIFIED + ADDED)
 
 ## Purpose
 
-The marketing landing page re-implemented 1:1 with Gemini's composition: a hero with the URL input and "Run Audit" button **inside** the field plus sample URLs, a five-card feature row with contrasting backgrounds (card 03 on dark navy with emerald number), a demo ScoreHero + band table using the **real** thresholds (90/75/60/40), and the six AI platforms. It is the anonymous entry point to the free audit flow. Since Sprint 8, the page is session-aware (the primary CTA adapts via `auth()`, Home becomes dynamic), the demo ScoreHero shows a REAL score from `runAudit()` against candidate URLs with its honest band (never an invented number), and OpenGraph/Twitter metadata is emitted (LND-6/LND-7/LND-8). Since Sprint 10, the pricing teaser and "Ver Planes" CTA are removed; the anonymous CTA repoints to signup/audit (e.g. "Auditar gratis"). Since Sprint 11, the JSON-LD `name`/`sameAs`/`url` reference the Relevy brand and the `relevy` repo (LND-9), and `llms.txt` carries the Relevy brand with `relevy.app` and the accurate 10/30-day free limit (LND-10). Since Sprint 12, the Organization JSON-LD carries the full recommended property set (`knowsAbout`, `founder`, `address`, `contactPoint`, `email`, `foundingDate` — LND-9), and the landing shows a visible FAQ with real questions plus `datePublished`/byline/alt (LND-13; FAQPage JSON-LD intentionally omitted as a product decision — the schema engine docks FAQPage as deprecated under RSC-7). Since Sprint 13, the landing copy describes the six GEO dimensions with their weights (LND-11 adds the 50-200 word band), the feature grid gains a 6th "Autoridad de marca" card (20%), the FAQ reaches 6 recognizable questions with question-form H2/H3 headings (LND-13), and a comparison table with real Relevy facts (LND-14) renders between the platforms and the FAQ. Since Sprint 15, the copy weight references are synced to v3.1.0 (24/23/15/12/14/12, brand "12 %"/"octava parte" — LND-15), the hero subtitle lists the six dimensions by name without percentages (LND-11), and the comparison table scrolls horizontally on mobile while preserving semantic `<table>` markup (LND-14). Since Sprint 16, the author byline moved to the global footer with the `.byline` class so the expertise engine detects it over the full DOM (LND-13), the founder Person carries the real `sameAs` profiles (LND-9), the six platform cards carry 2-4 sentence 50-200 word descriptions with concrete verified stats (LND-4), and the landing gains Case Study (LND-16) and Changelog (LND-17) sections between the comparison table and the FAQ. Since Sprint 17, the Organization JSON-LD adds the real `areaServed` "AR" / `industry` "Software" / `numberOfEmployees` 1 values and omits the invented `award` (LND-9, honesty LND-7 — `missing_recommended` drops 4 → 1), and the landing interleaves gray/white section backgrounds that break the four-gray run (S4/S5b white `rounded-2xl` recuadros on the gray base, S5/S6 white `border-y` bands) while keeping exactly 6 `rounded-xl` platform cards and the `overflow-x-auto` table wrapper (LND-18).
+The marketing landing page re-implemented 1:1 with Gemini's composition: a hero with the URL input and "Run Audit" button **inside** the field plus sample URLs, a five-card feature row with contrasting backgrounds (card 03 on dark navy with emerald number), a demo ScoreHero + band table using the **real** thresholds (90/75/60/40), and the six AI platforms. It is the anonymous entry point to the free audit flow. Since Sprint 8, the page is session-aware (the primary CTA adapts via `auth()`, Home becomes dynamic), the demo ScoreHero shows a REAL score from `runAudit()` against candidate URLs with its honest band (never an invented number), and OpenGraph/Twitter metadata is emitted (LND-6/LND-7/LND-8). Since Sprint 10, the pricing teaser and "Ver Planes" CTA are removed; the anonymous CTA repoints to signup/audit (e.g. "Auditar gratis"). Since Sprint 11, the JSON-LD `name`/`sameAs`/`url` reference the Relevy brand and the `relevy` repo (LND-9), and `llms.txt` carries the Relevy brand with `relevy.app` and the accurate 10/30-day free limit (LND-10). Since Sprint 12, the Organization JSON-LD carries the full recommended property set (`knowsAbout`, `founder`, `address`, `contactPoint`, `email`, `foundingDate` — LND-9), and the landing shows a visible FAQ with real questions plus `datePublished`/byline/alt (LND-13; FAQPage JSON-LD intentionally omitted as a product decision — the schema engine docks FAQPage as deprecated under RSC-7). Since Sprint 13, the landing copy describes the six GEO dimensions with their weights (LND-11 adds the 50-200 word band), the feature grid gains a 6th "Autoridad de marca" card (20%), the FAQ reaches 6 recognizable questions with question-form H2/H3 headings (LND-13), and a comparison table with real Relevy facts (LND-14) renders between the platforms and the FAQ. Since Sprint 15, the copy weight references are synced to v3.1.0 (24/23/15/12/14/12, brand "12 %"/"octava parte" — LND-15), the hero subtitle lists the six dimensions by name without percentages (LND-11), and the comparison table scrolls horizontally on mobile while preserving semantic `<table>` markup (LND-14). Since Sprint 16, the author byline moved to the global footer with the `.byline` class so the expertise engine detects it over the full DOM (LND-13), the founder Person carries the real `sameAs` profiles (LND-9), the six platform cards carry 2-4 sentence 50-200 word descriptions with concrete verified stats (LND-4), and the landing gains Case Study (LND-16) and Changelog (LND-17) sections between the comparison table and the FAQ. Since Sprint 17, the Organization JSON-LD adds the real `areaServed` "AR" / `industry` "Software" / `numberOfEmployees` 1 values and omits the invented `award` (LND-9, honesty LND-7 — `missing_recommended` drops 4 → 1), and the landing interleaves gray/white section backgrounds that break the four-gray run (S4/S5b white `rounded-2xl` recuadros on the gray base, S5/S6 white `border-y` bands) while keeping exactly 6 `rounded-xl` platform cards and the `overflow-x-auto` table wrapper (LND-18). Since Sprint 20, the OpenGraph image is the regenerated Relevy mark (og.png 1200×630, hash ≠ pre-rebrand default — LND-8), an honest launch section renders between the FAQ and the final CTA (LND-20.1), and the five starter SVGs without a consumer are removed from `public/` (LND-20.2).
 
 ## Requirements
 
@@ -17,7 +17,7 @@ The marketing landing page re-implemented 1:1 with Gemini's composition: a hero 
 | LND-5 | GEO Engine badge | New | MUST | Hero MUST show the "GEO Engine" badge |
 | LND-6 | Authenticated CTA | New | MUST | Home MUST call `auth()`; session → "Ir al dashboard", else signup/audit CTA; no pricing teaser |
 | LND-7 | Veracious ScoreHero | New | MUST | ScoreHero MUST show verified score + `auditDate` + `categoryScores` (no placeholder) |
-| LND-8 | OG/SEO tags | New | MUST | Landing MUST emit OpenGraph + Twitter metadata |
+| LND-8 | OG/SEO tags | MODIFIED | MUST | Landing MUST emit OpenGraph + Twitter metadata; the OG image MUST be the regenerated Relevy mark (og.png 1200×630, hash ≠ pre-rebrand default `9e854ba0…`) |
 | LND-9 | JSON-LD organization | MODIFIED | MUST | Landing MUST emit Organization + WebSite JSON-LD naming "Relevy" with `url` `relevy.app` and `sameAs` the `relevy` repo; Organization MUST include `knowsAbout`, `founder`, `address`, `contactPoint`, `email`, `foundingDate`, `areaServed` "AR", `industry` "Software", `numberOfEmployees` 1 (real data from brand constants); `ORG_SAME_AS` MUST contain EXACTLY five real profiles (the three existing + `https://www.tiktok.com/@ezefernandezdev` + `https://github.com/ezefernandezyf/relevy` → `countValidSameAs` 15); nested founder Person MUST carry `sameAs` = `ORG_SAME_AS` (+2 expertise, no authoritativeness double-count); `award` MUST NOT be emitted (honesty LND-7, `missing_recommended` stays 1) |
 | LND-19.2 | Article JSON-LD with real data | ADDED | MUST | Landing MUST emit a third JSON-LD block `@type: "Article"` (NOT TechArticle) with real data: `headline` = Case Study heading, `datePublished` "2026-08-20", `dateModified` "2026-08-28", `author` = FOUNDER, `publisher` = Organization Relevy, `url` = `APP_URL`; satisfies `article_author` 10/10 and `detectBusinessType` → `publisher` 10/10 |
 | LND-19.3 | Article speakable + case-study element | ADDED | MUST | Article MUST include `speakable.cssSelector` `["#case-study"]` and the served HTML Case Study container MUST have `id="case-study"`; satisfies `speakable` 5/5 |
@@ -31,6 +31,8 @@ The marketing landing page re-implemented 1:1 with Gemini's composition: a hero 
 | LND-16 | Case Study section | ADDED | MUST | Landing MUST render a Case Study section between the comparison table and the FAQ: locked H2 "Case Study: ¿Cómo mejoramos el GEO Score de nuestro propio sitio?" (ends in "?", contains "Case Study"), neutral Spanish body in the 50-200 word band with verified numbers only |
 | LND-17 | Changelog section | ADDED | MUST | Landing MUST render a Changelog section immediately after Case Study: H2 "Changelog" + the three real engine versions in semver (v3.1.0/v3.0.0/v2.0.0), block kept in the 50-200 word band |
 | LND-18 | Interleaved section backgrounds | ADDED | MUST | Landing MUST alternate gray/white section surfaces (S4/S5b white `rounded-2xl` recuadros on gray, S5/S6 white `border-y` bands); gray-surface eyebrows `#475569` (AA); platforms grid MUST keep exactly 6 `div.rounded-xl`; table wrapper MUST stay `overflow-x-auto` with `min-w-[640px]` |
+| LND-20.1 | Launch section | ADDED | MUST | Landing MUST render an honest launch section between the FAQ and the final CTA: copy in `src/lib/copy.ts` (`LANDING_COPY.launch`), neutral ES 50-200 words, FREE plan honest (10 audits / 30 days), no invented claims, existing design system |
+| LND-20.2 | Starter SVGs removed | ADDED | MUST | Landing MUST remove the 5 starter SVGs without a consumer from `public/` (`next/vercel/window/globe/file.svg`) with zero references in `src/` and `app/` |
 
 ### Requirement: Hero Form Inline (LND-1)
 
@@ -147,13 +149,29 @@ When the landing ScoreHero renders, then it MUST display a real GEO score obtain
 
 ### Requirement: OG/SEO Tags (LND-8)
 
-When the landing page renders, then it MUST emit OpenGraph and Twitter card metadata via the shared OG helper (reusing the default metadata with OG fields added).
+When the landing page renders, then it MUST emit OpenGraph and Twitter card metadata via the shared OG helper (reusing the default metadata with OG fields added), and the OpenGraph image MUST be the regenerated Relevy mark.
+(Previously: `og.png` was the pre-rebrand asset from 2026-08-25; the OpenGraph image is now regenerated with the Relevy mark, referenced from `src/app/icon.svg`.)
 
 #### Scenario: OG + Twitter tags present
 
 - GIVEN the landing page
 - WHEN it renders
 - THEN `og:title`, `og:description`, `og:image`, and Twitter card tags are present
+
+#### Scenario: og.png is the current Relevy mark
+
+- GIVEN `public/og.png`
+- WHEN it is inspected
+- THEN it exists at 1200×630
+- AND its content hash differs from the pre-rebrand default (`9e854ba0…`), matching the Relevy mark in `src/app/icon.svg`
+- AND the human visual verification is documented in `verify-report`
+
+#### Scenario: OG helper still references /og.png
+
+- GIVEN `src/lib/og.ts`
+- WHEN `OG_IMAGE` is inspected
+- THEN it still points to `/og.png` at 1200×630
+- AND the JSON-LD `logo`/`image` still reference the same asset
 
 ### Requirement: JSON-LD Organization (LND-9)
 
@@ -471,6 +489,51 @@ The `award` property MUST NOT be added to any JSON-LD node — no real award exi
 - THEN no `award` property appears anywhere
 - AND `organization_person` scores 13/15 with `award` documented as `missing_recommended` (honest, never fabricated)
 
+### Requirement: Launch Section (LND-20.1)
+
+When the landing page renders, then it MUST include an honest launch section between the FAQ and the final CTA, in document order, that announces the product and the FREE plan without invented claims. The copy MUST live in `src/lib/copy.ts` (`LANDING_COPY.launch`), be neutral Spanish (passes the `VOSEO_PATTERN` invariant), sit in the 50-200 word band, and follow the existing design system (navy/emerald/amber, Instrument Serif/Work Sans). The copy MUST NOT invent tiers, unshipped features, or external posts.
+
+#### Scenario: Section renders between FAQ and CTA
+
+- GIVEN the landing page
+- WHEN the sections are inspected in document order
+- THEN a launch section renders after the FAQ and before the final CTA
+
+#### Scenario: Honest live + FREE plan copy
+
+- GIVEN the launch section copy
+- WHEN it is inspected
+- THEN it states the live product and the FREE plan (10 audits / 30 days)
+- AND it makes no invented claims (no paid tiers, no unshipped features, no external posts)
+
+#### Scenario: Copy centralized and ES neutral in the 50-200 band
+
+- GIVEN `LANDING_COPY.launch` in `src/lib/copy.ts`
+- WHEN it is inspected
+- THEN it is between 50 and 200 words, passes the `VOSEO_PATTERN` invariant, and contains the strings "10 auditorías" and "30 días"
+
+#### Scenario: Design system coherence
+
+- GIVEN the launch section markup
+- WHEN it is inspected
+- THEN it uses the existing design tokens (`font-serif`, navy/emerald/amber) consistent with the rest of the landing
+
+### Requirement: Starter SVGs Removed (LND-20.2)
+
+When the landing/public assets render, then the starter SVGs without a consumer MUST be removed from `public/`: `next.svg`, `vercel.svg`, `window.svg`, `globe.svg`, `file.svg`. There MUST be zero references to these files in `src/` and `app/`.
+
+#### Scenario: No starter SVGs in public/
+
+- GIVEN `public/`
+- WHEN the five starter SVGs are looked up
+- THEN `next.svg`, `vercel.svg`, `window.svg`, `globe.svg`, and `file.svg` are absent
+
+#### Scenario: No consumer references break
+
+- GIVEN the repository source
+- WHEN references to the five starter SVGs are searched in `src/` and `app/`
+- THEN there are zero references
+
 ## Compliance Matrix
 
 | Requirement | Scenarios | Coverage |
@@ -482,7 +545,7 @@ The `award` property MUST NOT be added to any JSON-LD node — no real award exi
 | LND-5 | Badge visible | Covered |
 | LND-6 | Logged-in user sees dashboard CTA, Anonymous visitor sees audit CTA | Covered |
 | LND-7 | Verified evidence shown, No candidate reaches 90+ | Covered |
-| LND-8 | OG + Twitter tags present | Covered |
+| LND-8 | OG + Twitter tags present, og.png is the current Relevy mark, OG helper still references /og.png | Covered |
 | LND-9 | Relevy Organization + WebSite, Recommended properties populated with real data, Founder Person carries the five real sameAs profiles, No authoritativeness double-count, Real org attributes trace to brand constants, sameAs scores 15/15 with five real profiles, No invented award | Covered |
 | LND-10 | Assets served at root, llms.txt is Relevy-accurate | Covered |
 | LND-11 | Answer-first copy with stats, Passages in the 50-200 word band, Hero subtitle is names-only | Covered |
@@ -496,3 +559,5 @@ The `award` property MUST NOT be added to any JSON-LD node — no real award exi
 | LND-19.2 | Article node served with real fields, Article satisfies article_author and publisher | Covered |
 | LND-19.3 | speakable selector references a real element, speakable criterion satisfied | Covered |
 | LND-19.4 | No award emitted, gap documented | Covered |
+| LND-20.1 | Section renders between FAQ and CTA, Honest live + FREE plan copy, Copy centralized and ES neutral in the 50-200 band, Design system coherence | Covered |
+| LND-20.2 | No starter SVGs in public/, No consumer references break | Covered |
