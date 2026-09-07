@@ -24,16 +24,22 @@ import type { GeminiBand, GeminiView } from "@/report/presenters/types";
  * distribution (RGS-1): crawler 15, citability 24, content 23, schema 12,
  * platform 14, brand 12.
  *
- * Brand row honesty (APT-11/RAO-12): Wikipedia rate-limited the batch, so the
- * relevy.app brand probe returned `rate_limit` and `brandAuthority.status` is
- * "error" - the row renders "No medido" (null), never a fabricated 0, and the
- * composite rebalances without the dimension (RGS-9, 62 stays the real v3.1
- * score). Probe verificado aparte: probeBrand("Anthropic") → "Anthropic"
- * (BRA-1, docs.anthropic.com).
+ * A3.3 (sprint 21, 2026-09-07): re-pinned after the citability i18n fix.
+ * Best real candidate: relevy.app - GEO Score 71 (good). The engine now
+ * recognizes Spanish definition/copula/first-person patterns, raising
+ * citability 54.5 → 73.9 (see sprint-21-citability-i18n). Category scores
+ * below are the REAL `toGeminiViewModel` output of the 2026-09-07 run,
+ * copied verbatim (crawler 95, citability 73.9, E-E-A-T 73, schema 93,
+ * platform 84). Weights are the v3.1.0 distribution (RGS-1).
+ *
+ * Brand row honesty (APT-11/RAO-12): on 2026-09-07 the brand probe ran
+ * successfully and measured 0 (no Wikipedia/Wikidata presence) - a REAL 0,
+ * not a rate-limit null. The row renders 0 with weight 12% and the composite
+ * includes the penalty (RGS-11): 71 stays the real v3.1 score.
  */
-const VERIFIED_TOTAL_SCORE = 62;
+const VERIFIED_TOTAL_SCORE = 71;
 const VERIFIED_DOMAIN = "relevy.app";
-const VERIFIED_DATE = "2026-09-02";
+const VERIFIED_DATE = "2026-09-07";
 
 export const SCOREHERO_EVIDENCE: GeminiView = {
   totalScore: VERIFIED_TOTAL_SCORE,
@@ -67,49 +73,50 @@ export const SCOREHERO_EVIDENCE: GeminiView = {
     {
       id: "citability",
       name: "Citabilidad",
-      score: 54.5,
+      score: 73.9,
       maxScore: 100,
       weight: "24%",
-      status: "fair",
+      status: "good",
       keyMetric: null,
       description: "Probabilidad de que los asistentes citen los pasajes.",
     },
     {
       id: "content",
       name: "E-E-A-T",
-      score: 46,
+      score: 73,
       maxScore: 100,
       weight: "23%",
-      status: "poor",
+      status: "good",
       keyMetric: null,
       description: "Calidad del contenido según E-E-A-T.",
     },
     {
       id: "schema",
       name: "Datos estructurados",
-      score: 72,
+      score: 93,
       maxScore: 100,
       weight: "12%",
-      status: "good",
+      status: "excellent",
       keyMetric: null,
       description: "Marcado de datos estructurados.",
     },
     {
       id: "platform",
       name: "Plataforma",
-      score: 70,
+      score: 84,
       maxScore: 100,
       weight: "14%",
-      status: "good",
+      status: "excellent",
       keyMetric: null,
       description: "Preparación de la plataforma para IA.",
     },
     {
       id: "brand",
       name: "Autoridad de marca",
-      // APT-11: no fabricated value - the probe errored (rate_limit), so the
-      // row is honestly "No medido" and the landing renders no bar for it.
-      score: null,
+      // APT-11: REAL measured 0 (2026-09-07) - the probe ran successfully and
+      // found no Wikipedia/Wikidata presence. A measured 0 is an honest
+      // 12%-weighted penalty (RGS-11), distinct from a rate-limit null.
+      score: 0,
       maxScore: 100,
       weight: "12%",
       status: null,
