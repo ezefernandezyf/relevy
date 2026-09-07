@@ -33,7 +33,8 @@ export const DEFINITION_PATTERN =
   /\b(?:is\s+(?:a|an)|es\s+(?:un|una)|son\s+(?:unos|unas))\s+/i;
 /** Copula that marks a declarative answer sentence ("X is ..."), extended
  * EN+ES (REQ-21.2: es/son/era/eran/fue/fueron). */
-export const ANSWER_COPULA = /\b(?:is|are|was|were|es|son|era|eran|fue|fueron)\b/i;
+export const ANSWER_COPULA =
+  /\b(?:is|are|was|were|es|son|era|eran|fue|fueron)\b/i;
 
 // RCI-4 - Self-Containment
 /** Score for a pronoun/conjunction-led block that needs external context. */
