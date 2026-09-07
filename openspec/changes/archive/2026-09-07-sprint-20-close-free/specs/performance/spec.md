@@ -1,23 +1,13 @@
-# Performance Specification
+# Performance Specification — Delta
 
-> **Change**: `sprint-8-polish-testing-backlog` + `sprint-20-close-free` · **Type**: New capability (ADDED) + Delta (MODIFIED + ADDED)
+> **Change**: `sprint-20-close-free` · **Type**: Delta (MODIFIED + ADDED)
 
-## Purpose
-
-Performance measurement with Lighthouse targeting 95+ where achievable, with documented deviations where heavy pages (multi-page) cannot reach the target.
-
-## Requirements
-
-| # | Requirement | Status | Strength | Summary |
-|---|-------------|--------|----------|---------|
-| PERF-1 | Lighthouse tooling | MODIFIED | MUST | Lighthouse tooling removed from the repository (devDep, npm script, `scripts/lighthouse.mjs`); transitive `puppeteer-core` pruned from the lockfile; historical evidence in `docs/performance.md` preserved with a removal note |
-| PERF-2 | 95+ target | New | SHOULD | Target Lighthouse 95+ on achievable pages |
-| PERF-3 | Documented deviations | New | MUST | Where 95+ is not reachable, the deviation MUST be documented |
-| REQ-20.3 | Remove orphan fonts | ADDED | MUST | `public/fonts/` removed (5 TTFs, 0 refs; fonts via `next/font/google`); zero references to the removed TTFs |
+## MODIFIED Requirements
 
 ### Requirement: Lighthouse Tooling (PERF-1)
 
 When performance is measured, then the Lighthouse tooling MUST be removed from the repository — the `lighthouse` devDependency, the npm `lighthouse` script, and `scripts/lighthouse.mjs` (broken since Sprint 18: `import puppeteer` → `ERR_MODULE_NOT_FOUND`) — and the `pnpm install` prune MUST remove the transitive `puppeteer-core` from the lockfile. Historical performance evidence in `docs/performance.md` (scan 2026-08-25) MUST be preserved with a note of the removal. PERF-2 and PERF-3 remain unchanged.
+
 (Previously: PERF-1 required Lighthouse tooling to be available via an npm script or documented manual command. It is now removed per the user decision — not repaired.)
 
 #### Scenario: No lighthouse tooling present
@@ -39,25 +29,7 @@ When performance is measured, then the Lighthouse tooling MUST be removed from t
 - THEN the 2026-08-25 performance evidence is preserved
 - AND a note documents the Lighthouse tooling removal
 
-### Requirement: 95+ Target (PERF-2)
-
-When a page is measured, then it SHOULD reach a Lighthouse score of 95 or higher where achievable.
-
-#### Scenario: Achievable page hits 95+
-
-- GIVEN a light page (e.g. landing, pricing)
-- WHEN it is measured
-- THEN the Lighthouse score SHOULD be ≥95
-
-### Requirement: Documented Deviations (PERF-3)
-
-When a page cannot reach the 95+ target (e.g. heavy multi-page views), then the deviation and its reason MUST be documented rather than silently accepted.
-
-#### Scenario: Heavy page deviation documented
-
-- GIVEN a heavy page that cannot reach 95+
-- WHEN it is measured
-- THEN the score and the reason for the deviation are documented
+## ADDED Requirements
 
 ### Requirement: Remove Orphan Fonts (REQ-20.3)
 
@@ -80,6 +52,4 @@ When the app serves its fonts, then the orphan `public/fonts/` directory MUST be
 | Requirement | Scenarios | Coverage |
 |-------------|-----------|----------|
 | PERF-1 | No lighthouse tooling present, Transitive puppeteer-core pruned, Historical evidence preserved | Covered |
-| PERF-2 | Achievable page hits 95+ | Covered |
-| PERF-3 | Heavy page deviation documented | Covered |
 | REQ-20.3 | No files under public/fonts/, Zero references to the removed TTFs | Covered |
