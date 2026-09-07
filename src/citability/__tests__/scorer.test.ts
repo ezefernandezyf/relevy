@@ -219,3 +219,97 @@ describe("Block composite (RCI-8 weighted average 30/25/20/15/10)", () => {
     }
   });
 });
+
+describe("Spanish answer patterns (REQ-21.1/21.2)", () => {
+  it("recognizes a Spanish definition lead 'es una' (REQ-21.1)", () => {
+    const block = blockWith([
+      "Relevy es una plataforma de auditoría GEO/SEO que analiza la visibilidad en buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("recognizes the plural Spanish definition 'son unas' buried in the block (REQ-21.1)", () => {
+    const block = blockWith([
+      "El informe recopila datos primarios sobre visibilidad en buscadores de IA durante el último año.",
+      "Estos datos son unas señales directas de autoridad temática.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("awards first-sentence credit to a declarative Spanish sentence with 'es' (REQ-21.2)", () => {
+    const block = blockWith([
+      "El análisis es completo y cubre las cinco dimensiones de visibilidad en buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("awards first-sentence credit with the past copula 'fue' (REQ-21.2)", () => {
+    const block = blockWith([
+      "El estudio fue realizado sobre 200 sitios en español y sus resultados son públicos.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+});
+
+describe("English regression lock (REQ-21.5)", () => {
+  it("keeps the exact English definition score when Spanish branches are added", () => {
+    const block = blockWith([
+      "API rate limiting is a technique used to control traffic.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBe(100);
+  });
+});
+
+describe("Spanish bad leads (REQ-21.4)", () => {
+  it("penalizes a Spanish pronoun lead like an English one", () => {
+    const block = blockWith([
+      "Esto significa que los buscadores de IA priorizan el contenido citable.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("penalizes a Spanish conjunction lead like an English one", () => {
+    const block = blockWith([
+      "Sin embargo, el estudio solo cubre una muestra pequeña de sitios.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("penalizes an 'aunque' concessive lead like an English one", () => {
+    const block = blockWith([
+      "Aunque el estudio es pequeño, los datos provienen de una fuente propia.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeLessThan(30);
+  });
+
+  it("keeps subject credit for a Spanish lead that names its subject", () => {
+    const block = blockWith([
+      "Relevy mide la visibilidad de un sitio en los buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.selfContainment).toBeGreaterThanOrEqual(30);
+  });
+});
+
+describe("Spanish uniqueness (REQ-21.3)", () => {
+  it("scores a Spanish first-person lead with a survey phrase >= 70", () => {
+    const block = blockWith([
+      "Nosotros encuestamos a 120 especialistas en GEO durante el último trimestre.",
+    ]);
+    expect(scoreBlock(block).scores.uniqueness).toBeGreaterThanOrEqual(70);
+  });
+
+  it("scores an original-research phrase in the body >= 70", () => {
+    const block = blockWith([
+      "Los buscadores de IA citan con más frecuencia a los sitios que publican datos propios.",
+      "Según nuestra investigación, la visibilidad orgánica correlaciona con la cantidad de citas.",
+    ]);
+    expect(scoreBlock(block).scores.uniqueness).toBeGreaterThanOrEqual(70);
+  });
+
+  it("keeps the base floor for a Spanish block without first-party signals", () => {
+    const block = blockWith([
+      "La auditoría GEO mide la visibilidad de un sitio en los buscadores de IA.",
+    ]);
+    expect(scoreUniqueness(block)).toBe(35);
+  });
+});

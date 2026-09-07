@@ -130,6 +130,29 @@ describe("scorePage edge cases (RCI-14)", () => {
   });
 });
 
+describe("scorePage on the Spanish landing fixture (REQ-21.x)", () => {
+  it("scores the definition-led Spanish block with answer >= 60 (REQ-21.1)", () => {
+    const result = scorePage(page("page-es-landing.html"));
+    const definitionBlock = result.blocks[0];
+    // The first block leads with "Relevy es una plataforma de auditoría
+    // GEO/SEO que…". Pre-change (EN-only patterns) this exact lead scored
+    // answer 20 (verified in the WU-1 RED run); the EN+ES branches lift it
+    // into a full definition block.
+    expect(definitionBlock.block.heading).toBe("¿Qué es Relevy?");
+    expect(definitionBlock.scores.answer).toBeGreaterThanOrEqual(60);
+    // Measured pageScore on this fixture: 46.7 (block 1 "¿Qué es Relevy?"
+    // scores answer 100 via "es una" + copula "es" → composite 62.0; blocks 2-3
+    // stay at answer 20). With the EN-only pattern set the same fixture scores
+    // 38.7 (block 1 would sit at answer 20 → composite 38.0), so the ES branch
+    // alone carries the +8.0 lift.
+    expect(result.pageScore).toBeGreaterThan(40);
+    expect(result.pageScore).toBeLessThan(60);
+    expect(
+      citabilityResultSchema.safeParse(toContractResult(result)).success,
+    ).toBe(true);
+  });
+});
+
 /**
  * RCI-10 (sprint 11 fix): bottom3 MUST be derived from the blocks NOT in
  * top3, so the two lists are disjoint on every page size - including pages
