@@ -289,3 +289,27 @@ describe("Spanish bad leads (REQ-21.4)", () => {
     expect(scoreBlock(block).scores.selfContainment).toBeGreaterThanOrEqual(30);
   });
 });
+
+describe("Spanish uniqueness (REQ-21.3)", () => {
+  it("scores a Spanish first-person lead with a survey phrase >= 70", () => {
+    const block = blockWith([
+      "Nosotros encuestamos a 120 especialistas en GEO durante el último trimestre.",
+    ]);
+    expect(scoreBlock(block).scores.uniqueness).toBeGreaterThanOrEqual(70);
+  });
+
+  it("scores an original-research phrase in the body >= 70", () => {
+    const block = blockWith([
+      "Los buscadores de IA citan con más frecuencia a los sitios que publican datos propios.",
+      "Según nuestra investigación, la visibilidad orgánica correlaciona con la cantidad de citas.",
+    ]);
+    expect(scoreBlock(block).scores.uniqueness).toBeGreaterThanOrEqual(70);
+  });
+
+  it("keeps the base floor for a Spanish block without first-party signals", () => {
+    const block = blockWith([
+      "La auditoría GEO mide la visibilidad de un sitio en los buscadores de IA.",
+    ]);
+    expect(scoreUniqueness(block)).toBe(35);
+  });
+});

@@ -75,7 +75,8 @@ export const STAT_PATTERN =
 export const STATS_FULL_SCORE_AT_ONE_PER_500 = 70;
 
 // RCI-7 - Uniqueness (proxy signals: first-party data phrases + first person)
-export const FIRST_PERSON_LEAD = /^(?:we|our|i)\b/i;
+export const FIRST_PERSON_LEAD =
+  /^(?:we|our|i|nuestro|nuestra|nosotros|nosotras)\b/i;
 export const UNIQUENESS_PHRASES = [
   "we surveyed",
   "we interviewed",
@@ -87,6 +88,16 @@ export const UNIQUENESS_PHRASES = [
   "we found",
   "first-party",
   "in our experience",
+  // Spanish branches (REQ-21.3 - the 8 normative phrases from the spec; the
+  // scorer matches on lowercased text, so entries are lowercase).
+  "encuestamos",
+  "analizamos",
+  "nuestro análisis",
+  "nuestros datos",
+  "nuestra investigación",
+  "nuestros hallazgos",
+  "encontramos",
+  "en nuestra experiencia",
 ] as const;
 export const UNIQUENESS_PER_HIT = 35;
 /** Base uniqueness credit every scored block earns for being an extractable,
