@@ -46,7 +46,7 @@ El desvío 3 de PERF-3 (brand link `label-content-name-mismatch`) se resolvió d
 raíz: el mark del logo es ahora un `<path>` vectorial (el `<text>` filtraba la
 "G" al `textContent` del link incluso con `aria-hidden`, rompiendo la regla de
 axe) y el `aria-label` del link replica el texto visible exacto
-("GeoAudit AI Visibility Audit").
+("Relevy AI Visibility Audit").
 
 **Violaciones encontradas y corregidas (2026-08-25):** el escaneo inicial
 detectó contraste insuficiente en el ScoreHero (`/100` + filas de benchmark) y
@@ -87,19 +87,27 @@ Los fondos tintados, bordes y dots conservan los hex de marca (decorativos
 
 ## Performance — Lighthouse (C15, WU-C3)
 
-Tooling: `lighthouse` (devDep) + script npm `lighthouse` con preset desktop
+> **Tooling removido (sprint 20, PERF-1):** la devDep `lighthouse`, el script npm
+> `lighthouse` y `scripts/lighthouse.mjs` se removieron — el script estaba roto
+> desde el sprint 18 (`import puppeteer` fallaba con `ERR_MODULE_NOT_FOUND`
+> porque `puppeteer` ya no era dependencia). La vía de medición ya no es
+> ejecutable; la evidencia histórica de abajo queda como registro. Con la poda
+> del lockfile (`pnpm install`) desapareció también `puppeteer-core` (transitiva
+> dev-only de lighthouse, follow-up W-2 del sprint 18).
+
+En su momento, el tooling era: `lighthouse` (devDep) + script npm `lighthouse` con preset desktop
 (`formFactor: desktop`, throttling simulado 40ms RTT / 10 Mbps, sin throttling
-de CPU — los mismos valores del flag CLI `--preset=desktop`). Chrome: usa
-`CHROME_PATH` si está definido o autodetecta (Chrome del sistema, luego caches
-de Playwright/Puppeteer). Los reportes JSON completos se guardan en
+de CPU — los mismos valores del flag CLI `--preset=desktop`). Chrome: usaba
+`CHROME_PATH` si estaba definido o autodetectaba (Chrome del sistema, luego caches
+de Playwright/Puppeteer). Los reportes JSON completos se guardaban en
 `.lighthouse/` (gitignored) como evidencia; este archivo resume los resultados.
 
-**Cómo correr la medición** (requiere el dev server arriba; Lighthouse 13 lanza
+**Cómo corría la medición** (requería el dev server arriba; Lighthouse 13 lanzaba
 Chrome headless por sí mismo):
 
 ```bash
 pnpm dev            # terminal 1
-pnpm lighthouse     # landing + pricing + report
+pnpm lighthouse     # landing + pricing + report   (script removido en sprint 20)
 pnpm lighthouse report   # una página puntual
 ```
 
@@ -138,10 +146,10 @@ server-side, así que el primer paint no espera al resultado.
      Fix sugerido: fondo `#047857` (blanco 5.48:1) — el emerald de texto que el
      design system ya usa (WU-C2).
 3. **`label-content-name-mismatch` (peso 0 — no afecta el score):** el brand
-   link del navbar lleva `aria-label="GeoAudit Inicio"` pero su texto visible
+   link del navbar llevaba `aria-label="Relevy Inicio"` pero su texto visible
    incluye el tagline "AI Visibility Audit", que no está en el nombre
    accesible. Aparece en las tres páginas. Fix sugerido: un `aria-label` que
-   contenga el texto visible (ej. `"GeoAudit — AI Visibility Audit"`).
+   contenga el texto visible (ej. `"Relevy — AI Visibility Audit"`).
 4. **Multipage (`/multipage`) — no medible en este entorno:** la ruta exige
    sesión + plan PRO (feature-gate MPA-8), no hay credenciales locales. Es
    pesada por diseño (hasta 5 audits en vivo + reporte completo por página), así

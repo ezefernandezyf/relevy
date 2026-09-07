@@ -1,4 +1,4 @@
-# GeoAudit → Relevy · Roadmap de Estado
+# Relevy — Roadmap de Estado
 
 > Tablero operativo del proyecto. Fuente de verdad de detalle: `openspec/changes/*` (specs, design, tasks) y `geo-saas-brief.md` §17. Este doc NO duplica el detalle — muestra dónde estamos y hacia dónde vamos.
 >
@@ -16,15 +16,15 @@
 >
 > **✅ Remove PDF completado (Sprint 18, archivado 2026-09-05):** remoción completa del feature de export PDF — `src/pdf/`, route `/api/report/[id]/pdf`, threading del report layer, botón "Exportar PDF" del dashboard, copy de beneficio, deps `puppeteer-core`/`puppeteer`/`@sparticuz/chromium-min` y spec canonical `pdf-export`; crawler content-type `application/pdf` preservado. Verificado PASS WITH WARNINGS (0/0 requisitos — remoción, 1049 tests). main = develop = `eeeaf3f` = PR #83.
 >
-> **✅ Schema Up completado (Sprint 19, archivado 2026-09-05):** schema score de la landing 62 → **93** con datos 100% reales (LND-7): `ORG_SAME_AS` 3→5 (+TikTok `@ezefernandezdev`, +repo `relevy` → sameAs 15/15), bloque JSON-LD `Article` con datos reales del Case Study (headline, fechas 2026-08-20/28, author FOUNDER, publisher Relevy → `article_author` 10/10 + `business_type_schema` publisher 10/10), `speakable` `["#case-study"]` + `id="case-study"` en el HTML servido (→ 5/5), `award` NO inventado (honestidad, `missing_recommended` 13/15), y `BreadcrumbList` en las 3 rutas del dashboard (Home>Dashboard>…, → `breadcrumbs` 5/5). Verificado PASS WITH WARNINGS (5/5 requisitos, 16/16 escenarios, 1058 tests). Fixture pin: `ld-landing-93.html` → score 93 + `businessType` publisher. Branch `feat/sprint-19-schema-up` (sin mergear aún — PR a develop en curso).
+> **✅ Schema Up completado (Sprint 19, archivado 2026-09-05):** schema score de la landing 62 → **93** con datos 100% reales (LND-7): `ORG_SAME_AS` 3→5 (+TikTok `@ezefernandezdev`, +repo `relevy` → sameAs 15/15), bloque JSON-LD `Article` con datos reales del Case Study (headline, fechas 2026-08-20/28, author FOUNDER, publisher Relevy → `article_author` 10/10 + `business_type_schema` publisher 10/10), `speakable` `["#case-study"]` + `id="case-study"` en el HTML servido (→ 5/5), `award` NO inventado (honestidad, `missing_recommended` 13/15), y `BreadcrumbList` en las 3 rutas del dashboard (Home>Dashboard>…, → `breadcrumbs` 5/5). Verificado PASS WITH WARNINGS (5/5 requisitos, 16/16 escenarios, 1058 tests). Fixture pin: `ld-landing-93.html` → score 93 + `businessType` publisher. Branch `feat/sprint-19-schema-up` mergeada a develop = `296c719` = PR #84.
 
 ## Estado actual
 
 | Campo | Valor |
 |---|---|
 | Rama | `develop` (integración) / `main` (release) |
-| Main / Develop | `eeeaf3f` / `eeeaf3f` |
-| Tests | **1058 passed / 4 skipped** |
+| Main / Develop | `296c719` / `296c719` |
+| Tests | **1088 passed / 4 skipped** |
 | Deploy | Vercel Free · `relevy.app` (dominio nuevo, env configurado) |
 | Nombre de marca | **Relevy** |
 | Preflight | interactive · both (openspec+engram) · ask-on-risk · 400 líneas · strict TDD |
@@ -47,7 +47,7 @@
 | 8 | Polish & Testing + Backlog UI | ✅ archivado · milestone main `894d90c` |
 | 9 | Auditoría & Calibración (GEO Score v2.0.0, pesos 28/24/20/14/14) | ✅ archivado · milestone main `e0d064c` |
 | 10 | **Free Mode** (eliminación Stripe + tiers pagos, límite FREE 10/30d, deploy Vercel) | ✅ archivado |
-| 11 | **Rebrand & Polish** (rename GeoAudit → Relevy + pulido) | ✅ archivado · milestone main `5273c39` |
+| 11 | **Rebrand & Polish** (rename a Relevy + pulido) | ✅ archivado · milestone main `5273c39` |
 | 12 | **Dogfood: subir el GEO Score de relevy.app** (schema score real 61 en desglose, JSON-LD completo, FAQ, fechas/byline) | ✅ archivado · main = develop = `cc01c84` · 915 tests · verificación en vivo: schema 61 real, llms.txt 200 |
 | 13 | **Brand Authority** (6º engine Wikipedia/Wikidata, GEO Score v3.0.0 con brand 20%, 4 criterios platform migrados, polish landing) | ✅ archivado · main = develop = `5176fbf` · 1008 tests · verify PASS 27/27 · evidencia ScoreHero real: moz.com 53 |
 | 14 | **Geo Calibration v3.1** (pesos 24/23/15/12/14/12, bandas 80/65/50/30, v3.1.0, rescale AIO ×100/70, floor uniqueness 35, semver, coverage 60, eTLD+1, proxy changelog, benchmark ScoreHero 80/65/50/30) | ✅ archivado · main = develop = `8c58dc7` · 1038 tests · verify PASS WITH WARNINGS 13/13 · evidencia ScoreHero: relevy.app **62** (promedio corpus 42.4) · relevy.app 46 → 62 |
@@ -55,7 +55,7 @@
 | 16 | **Score Up** (byline footer `.byline`, founder sameAs = ORG_SAME_AS, Case Study + Changelog, platform descs 50-200w con stats reales) | ✅ archivado · develop = `bd954ce` = PR #71 · 1066 tests · verify PASS 6/6 · 22/22 · shortfall honesto: ES bodies capan experience 15/25 (composite 67-70) |
 | 17 | **UI Polish** (PDF arch resolver, drawer mobile portaleado a body, fondos landing intercalados gris/blanco, JSON-LD org attrs reales sin award) | ✅ archivado · develop = `ad116c1` = PRs #73/#77/#78 · 1084 tests · verify PASS 4/4 · 24/24 |
 | 18 | **Remove PDF** (remoción completa del feature de export PDF — src/pdf/, route `/api/report/[id]/pdf`, threading report layer, botón Exportar PDF, copy, deps puppeteer-core/puppeteer/@sparticuz/chromium-min, spec canonical pdf-export; crawler `application/pdf` preservado) | ✅ archivado · main = develop = `eeeaf3f` = PR #83 · 1049 tests · verify PASS WITH WARNINGS 0/0 |
-| 19 | **Schema Up** (schema score landing 62→93 con datos reales: `ORG_SAME_AS` 3→5 → sameAs 15/15, Article JSON-LD con datos del Case Study → `article_author` 10/10 + publisher 10/10, `speakable` `#case-study` → 5/5, `award` honesto `missing_recommended` 13/15, `BreadcrumbList` en 3 rutas del dashboard → `breadcrumbs` 5/5; fixture `ld-landing-93` pin 93) | ✅ archivado · `feat/sprint-19-schema-up` (PR a develop en curso) · 1058 tests · verify PASS WITH WARNINGS 5/5 · 16/16 |
+| 19 | **Schema Up** (schema score landing 62→93 con datos reales: `ORG_SAME_AS` 3→5 → sameAs 15/15, Article JSON-LD con datos del Case Study → `article_author` 10/10 + publisher 10/10, `speakable` `#case-study` → 5/5, `award` honesto `missing_recommended` 13/15, `BreadcrumbList` en 3 rutas del dashboard → `breadcrumbs` 5/5; fixture `ld-landing-93` pin 93) | ✅ archivado · develop = `296c719` = PR #84 · 1058 tests · verify PASS WITH WARNINGS 5/5 · 16/16 |
 
 ## Próximos sprints (plan revisado 2026-09-03, actualizado 2026-09-05)
 
@@ -63,11 +63,11 @@
 
 | Sprint | Contenido | Detalle |
 |---|---|---|
-| **20 — Close Free** | Cierre del free (salida oficial sin Stripe) | Sentry (monitoreo) · brand presence final · announce/marketing · dominio final · remote local → `relevy.git` (cosmético) · limpieza follow-ups W-1..W-3 del Sprint 18 · merge de `feat/sprint-19-schema-up` a develop (PR en curso) |
+| **20 — Close Free** | Cierre del free (salida oficial sin Stripe) | Sentry (monitoreo, PR 1) · brand presence final (PR 2) · limpieza W-1..W-3 del Sprint 18 + sync de docs a la realidad (PR 3) — **en curso** |
 
-## Deudas pendientes (para Sprints 17-19 — UI Polish, Remove PDF y Schema Up cerrados; Close Free próximo)
+## Deudas pendientes (para Sprints 17-19 — UI Polish, Remove PDF y Schema Up cerrados; Close Free en curso)
 
-- **De Sprint 18 (Remove PDF, archivado 2026-09-05) — follow-ups no bloqueantes (W-1..W-3 del verify)**: (1) `pnpm-lock.yaml` retiene `puppeteer-core@25.8.0` transitiva dev-only de `lighthouse@13.4.1` — limpiar solo si se remueve lighthouse; (2) `node_modules/.pnpm/@sparticuz+chromium-min@149.0.0` huérfano — un `pnpm install` fresco lo pruna; (3) menciones históricas de Puppeteer en `openspec/config.yaml:6` + `README.md:28` (cosmético, sprint futuro).
+- **De Sprint 18 (Remove PDF, archivado 2026-09-05) — follow-ups no bloqueantes (W-1..W-3 del verify) — RESUELTOS por Close Free (Sprint 20)**: (1) `pnpm-lock.yaml` retenía `puppeteer-core@25.8.0` transitiva dev-only de `lighthouse@13.4.1` — RESUELTO: se removió `lighthouse` y la poda del lockfile eliminó `puppeteer-core` (PR 3); (2) `node_modules/.pnpm/@sparticuz+chromium-min@149.0.0` huérfano — RESUELTO: el `pnpm install` de poda lo prunó (PR 3); (3) menciones históricas de Puppeteer en `openspec/config.yaml` + `README.md` — RESUELTO: docs sincronizadas a la realidad (PR 3).
 
 - **De Sprint 14 (resueltas por Sprint 15)**: (1) refrescar los rangos predichos del escenario RGS-1 (moz 58-63, relevy 50-54, "nada <25") → REFRESCADOS al corpus medido (moz 57, relevy 55, promedio 42.4, 14 URLs, Anthropic eTLD+1 — T8 del Sprint 15, docs-only); (2) excluir `coverage/` del lint → RESUELTO (`eslint.config.mjs` ignora `coverage/**`, T7 del Sprint 15).
 - **De Sprint 12 → Sprint 16 (RESUELTO parcialmente)**: Sprint 16 entregó el contenido de landing (byline `.byline` en footer, founder sameAs, Case Study + Changelog, descs de plataforma 50-200w con stats) y el re-audit muestra un composite 67-70 — el objetivo 70+/80+ sigue abierto porque los cuerpos ES-only capan experience en 15/25 (shortfall honesto documentado en el archivo del Sprint 16). Siguiente palanca: brand presence final (Close Free, Sprint 20) y/o contenido EN first-person.
@@ -80,7 +80,7 @@
 |---|---|
 | D1 | **Plataforma**: Vercel Free, sin monetización hasta validar tracción (2026-08-26) |
 | D2 | **Migración a Cloudflare**: DIFERIDA — se retoma cuando haya uso real que la justifique |
-| D3 | **Nombre**: GeoAudit → **Relevy** (2026-08-30) · dominio `relevy.app` · semi-inventado defendible |
+| D3 | **Nombre**: rename a **Relevy** (2026-08-30) · dominio `relevy.app` · semi-inventado defendible |
 | D4 | **Monetización**: Stripe + tiers pagos ELIMINADOS (Sprint 10) · se reintroduce con Cloudflare al validar |
 | D5 | **Límite FREE**: 10 auditorías / 30 días + rate limit 5 req/60s |
 | D6 | **PDF**: OBSOLETA — la feature de export PDF se removió completa en Sprint 18 (`src/pdf/`, route, deps puppeteer; el content-type `application/pdf` del crawler se preserva) |
@@ -94,4 +94,4 @@
 - ✅ → al archivar cada sprint (openspec archive)
 - 🟡 → al completar implementación (verify PASS, pendiente deploy/archive)
 - 🔄 → work en progreso
-- **Próximo**: Close Free (Sprint 20) — Sentry + brand presence + announce
+- **En curso**: Close Free (Sprint 20) — Sentry + brand presence + limpieza/docs (PR 1-3)

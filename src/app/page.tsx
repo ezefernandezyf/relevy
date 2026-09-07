@@ -786,6 +786,27 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 6b. LANZAMIENTO (LND-20.1, sprint 20) - honest live + FREE plan
+          announcement between the FAQ and the final CTA: neutral ES body
+          (50-200 word band, VOSEO_PATTERN-clean) from copy.ts, no invented
+          claims. Same design pattern as LND-16/LND-17: gray base + white
+          rounded-2xl recuadro, mono eyebrow, serif navy heading. */}
+      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+        <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 sm:p-8">
+          <div className="mb-6 text-center">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#475569]">
+              {LANDING_COPY.launch.eyebrow}
+            </span>
+            <h2 className="mt-2 font-serif text-3xl tracking-tight text-[#0f172a] sm:text-4xl">
+              {LANDING_COPY.launch.heading}
+            </h2>
+          </div>
+          <p className="text-sm leading-relaxed text-[#475569] sm:text-base">
+            {LANDING_COPY.launch.body}
+          </p>
+        </div>
+      </section>
+
       {/* 7. CTA FINAL - adaptado a la sesión (LND-6): sin teaser de precios
           (la ruta /pricing se eliminó en WU-1) */}
       <section className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -68,6 +69,33 @@ describe("OG asset (C1.2)", () => {
     expect(buf.subarray(1, 4).toString("ascii")).toBe("PNG");
     expect(buf.readUInt32BE(16)).toBe(1200);
     expect(buf.readUInt32BE(20)).toBe(630);
+  });
+
+  // LND-8 (sprint 20): the shipped og.png is the PRE-REBRAND Next.js default
+  // (dated 2026-08-25, sha256 9e854ba0...) and MUST be regenerated with the
+  // Relevy mark from src/app/icon.svg. This assertion is the automated RED
+  // gate for that MANUAL task - it fails until the user regenerates the asset.
+  //
+  // MANUAL GENERATION INSTRUCTIONS (user task, T4 - not automated):
+  //   1. Open src/app/icon.svg (the current Relevy mark, 2026-08-25+).
+  //   2. Export/convert it to PNG at exactly 1200×630:
+  //        Inkscape: inkscape src/app/icon.svg --export-type=png \
+  //                  --export-filename=public/og.png --export-width=1200 \
+  //                  --export-height=630
+  //        rsvg-convert: rsvg-convert -w 1200 -h 630 src/app/icon.svg \
+  //                      -o public/og.png
+  //        Or Figma: paste the mark on a 1200×630 frame and Export as PNG.
+  //   3. Replace public/og.png and confirm this test turns GREEN.
+  //   Visual check against src/app/icon.svg is recorded in the verify phase.
+  it("differs from the pre-rebrand default asset (LND-8)", () => {
+    const file = join(process.cwd(), "public", "og.png");
+    expect(existsSync(file)).toBe(true);
+    const hash = createHash("sha256").update(readFileSync(file)).digest("hex");
+    // The 2026-08-25 asset is the unmodified Next.js starter image - the
+    // regenerated Relevy mark MUST produce a different content hash.
+    expect(hash).not.toBe(
+      "9e854ba0d92fe0fe81c88510eba501c53ae217bca2c6033f64c56c0982701de6",
+    );
   });
 
   it("carries the Relevy brand in the shared OG alt (SHL-9)", () => {
