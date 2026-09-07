@@ -219,3 +219,43 @@ describe("Block composite (RCI-8 weighted average 30/25/20/15/10)", () => {
     }
   });
 });
+
+describe("Spanish answer patterns (REQ-21.1/21.2)", () => {
+  it("recognizes a Spanish definition lead 'es una' (REQ-21.1)", () => {
+    const block = blockWith([
+      "Relevy es una plataforma de auditoría GEO/SEO que analiza la visibilidad en buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("recognizes the plural Spanish definition 'son unas' buried in the block (REQ-21.1)", () => {
+    const block = blockWith([
+      "El informe recopila datos primarios sobre visibilidad en buscadores de IA durante el último año.",
+      "Estos datos son unas señales directas de autoridad temática.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("awards first-sentence credit to a declarative Spanish sentence with 'es' (REQ-21.2)", () => {
+    const block = blockWith([
+      "El análisis es completo y cubre las cinco dimensiones de visibilidad en buscadores de IA.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+
+  it("awards first-sentence credit with the past copula 'fue' (REQ-21.2)", () => {
+    const block = blockWith([
+      "El estudio fue realizado sobre 200 sitios en español y sus resultados son públicos.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBeGreaterThanOrEqual(60);
+  });
+});
+
+describe("English regression lock (REQ-21.5)", () => {
+  it("keeps the exact English definition score when Spanish branches are added", () => {
+    const block = blockWith([
+      "API rate limiting is a technique used to control traffic.",
+    ]);
+    expect(scoreBlock(block).scores.answer).toBe(100);
+  });
+});

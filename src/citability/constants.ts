@@ -27,10 +27,13 @@ export const ANSWER_FIRST_SENTENCE_BONUS = 50;
 export const ANSWER_FIRST_SENTENCE_PARTIAL_BONUS = 25;
 /** A first sentence longer than this is not a "first-60-words standalone" answer. */
 export const FIRST_SENTENCE_MAX_WORDS = 60;
-/** Definition pattern (design: /\bis\s+a(n)?\s+/). */
-export const DEFINITION_PATTERN = /\bis\s+(?:a|an)\s+/i;
-/** Copula that marks a declarative answer sentence ("X is ..."). */
-export const ANSWER_COPULA = /\b(?:is|are|was|were)\b/i;
+/** Definition pattern (design: /\bis\s+a(n)?\s+/), extended EN+ES (REQ-21.1:
+ * Spanish "es un/una", plural "son unos/unas" earn the same bonus). */
+export const DEFINITION_PATTERN =
+  /\b(?:is\s+(?:a|an)|es\s+(?:un|una)|son\s+(?:unos|unas))\s+/i;
+/** Copula that marks a declarative answer sentence ("X is ..."), extended
+ * EN+ES (REQ-21.2: es/son/era/eran/fue/fueron). */
+export const ANSWER_COPULA = /\b(?:is|are|was|were|es|son|era|eran|fue|fueron)\b/i;
 
 // RCI-4 - Self-Containment
 /** Score for a pronoun/conjunction-led block that needs external context. */
