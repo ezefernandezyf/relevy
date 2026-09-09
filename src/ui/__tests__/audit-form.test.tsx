@@ -78,8 +78,8 @@ describe("AuditForm inline button + sample URLs (LND-1)", () => {
     render(<AuditForm action={okAction} />);
     for (const label of [
       "linear.app",
-      "acme-store.io",
-      "devstack.io",
+      "apple.com",
+      "supabase.com",
       "legacyconsulting.com",
     ]) {
       expect(screen.getByRole("button", { name: label })).toBeInTheDocument();
@@ -88,9 +88,9 @@ describe("AuditForm inline button + sample URLs (LND-1)", () => {
 
   it("pre-fills the input when a sample URL chip is activated (LND-1)", () => {
     render(<AuditForm action={okAction} />);
-    fireEvent.click(screen.getByRole("button", { name: "acme-store.io" }));
+    fireEvent.click(screen.getByRole("button", { name: "apple.com" }));
     expect(screen.getByLabelText("URL del sitio")).toHaveValue(
-      "https://acme-store.io",
+      "https://www.apple.com",
     );
   });
 

@@ -14,8 +14,8 @@ const INITIAL_STATE: AuditFormState = { error: null };
 /** Gemini landing sample URLs verbatim - pre-fill chips (LND-1). */
 const SAMPLE_URLS = [
   { label: "linear.app", url: "https://linear.app" },
-  { label: "acme-store.io", url: "https://acme-store.io" },
-  { label: "devstack.io", url: "https://devstack.io" },
+  { label: "apple.com", url: "https://www.apple.com" },
+  { label: "supabase.com", url: "https://supabase.com" },
   { label: "legacyconsulting.com", url: "https://legacyconsulting.com" },
 ];
 
